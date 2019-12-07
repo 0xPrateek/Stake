@@ -17,5 +17,36 @@
   </a>
 </p>
 
-### Repository Under development.
 
+Stake is an Subdomain enumration + Subdomain Takeover tool.
+
+##### From where it Enumerates :
+
+1. `Google`
+2. `Bing`
+3. `Virus Total`
+4. `crt.sh`
+
+P.S: Currently, It only support `Subdomain Enumeration`.
+
+### Getting Started
+
+#### Steps to setup :
+
+1. `git clone https://github.com/0xprateek/stake`
+2. `cd stake`
+3. `pip install -r requirements.txt`
+
+#### Starting Stake :
+
+1. `cd stake/Core`<br/>
+2.  **Using Command line arguments** <br/>
+         `python3 stake.py -d www.sample.com `<br/>
+  #### Usage :
+     stake.py [-h] [-v] [-d] domain.com
+
+### Contributing
+Any and all contributions, issues, features and tips are welcome.
+
+### License
+**Stake** is licence under [GPL v3.0 license](https://www.gnu.org/licenses/gpl-3.0.en.html)
