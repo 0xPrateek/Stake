@@ -31,31 +31,35 @@ def takeover_scan(file_path):
 
 
 if __name__ == "__main__":
+    try:
+        Logo.banner()
+        
+        parser = argparse.ArgumentParser()
 
-    Logo.banner()
+        parser.add_argument('-d','--domain',help = " Domain to Stake.",required = True)
+        parser.add_argument('-c','--custom',help = "Use custom subdomain list.",default = False)
+        parser.add_argument('-e','--enumerate',help = 'Enumerate subdomains.',default = True,action = 'store_true')
+        parser.add_argument('-a','--all',help = 'Perform all types of scan for subdomain including Brute-force.',action = 'store_true')
+        parser.add_argument('-s','--save',help = 'Save result in text file.',action = 'store_true')
 
-    parser = argparse.ArgumentParser()
+        args = parser.parse_args()
 
-    parser.add_argument('-d','--domain',help = " Domain to Stake.",required = True)
-    parser.add_argument('-c','--custom',help = "Use custom subdomain list.",default = False)
-    parser.add_argument('-e','--enumerate',help = 'Enumerate subdomains.',default = True,action = 'store_true')
-    parser.add_argument('-a','--all',help = 'Perform all types of scan for subdomain including Brute-force.',action = 'store_true')
-    parser.add_argument('-s','--save',help = 'Save result in text file.',action = 'store_true')
+        if args.domain:
+            root_url = args.domain
+            root_url = format_url(root_url)
 
-    args = parser.parse_args()
+        if args.custom != False:
 
-    if args.domain:
-        root_url = args.domain
-        root_url = format_url(root_url)
+            path = args.custom
+            takeover_scan(path)
 
-    if args.custom != False:
+        elif args.enumerate:
 
-        path = args.custom
-        takeover_scan(path)
+            brute = args.all
+            enum_file = enum_subdomain(root_url,brute)
 
-    elif args.enumerate:
+            takeover_scan(enum_file)
 
-        brute = args.all
-        enum_file = enum_subdomain(root_url,brute)
-
-        takeover_scan(enum_file)
+    except KeyboardInterrupt:
+        colors.error("User Interrupted the Process. Exiting...")
+        sys.exit(0)
