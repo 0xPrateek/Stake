@@ -14,7 +14,7 @@ def format_url(url):
 
 def enum_subdomain(domain,brute):
 
-    colors.success("Starting subdomain Enumration for {}".format(domain))
+    colors.success("Starting subdomain Enumration for {}".format(domain), "green")
 
     try:
         r = requests.get(domain)
